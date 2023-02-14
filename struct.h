@@ -1,6 +1,7 @@
+
 #ifndef STRUCT_H
 #define STRUCT_H
-
+#include <stdlib.h>
 typedef struct student{
   
 	char*name;
@@ -12,8 +13,5 @@ typedef struct student{
 	struct student *next;
 		 
 }std;
-
-int admin_password=1234;
- std* head = NULL;
 
 #endif

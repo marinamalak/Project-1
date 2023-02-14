@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include "check.h"
- #include "admin.c"
+#include "admin.h"
 
- 
+
  
  void main(void){
 	

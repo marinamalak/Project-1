@@ -1,9 +1,13 @@
+ 
 #include <string.h>
 #include<stdlib.h>
-#include "struct.h"
- #ifndef ADMIN_C
- #define ADMIN_C
+#include<stdio.h>
+#include "admin.h"
+ #include "struct.h"
+ #include "user.h"
  
+ int admin_password=1234;
+ std* head = NULL;
  int clear_input_buffer(void) {
     int ch;
     while (((ch = getchar()) != EOF) && (ch != '\n')) 
@@ -136,6 +140,8 @@ if(head){
 void Edit_admin_pass(){
 	printf("Enter new password: ");
 	scanf("%d",&admin_password);
+   printf("Admin password edited successfully \n");
+
 }
 void Edit_std_grade(){
 	char right=1;
@@ -213,5 +219,91 @@ void Edit_std_grade(){
    printf("\t\t*To Logout choose..7\n");
    Admin_services();
    }
-   
- #endif
+
+
+int check_admin()
+{
+	int check=0;
+	printf("\n\t\t  ~~~ To Log In ~~~\n");
+	for(int i=0;i<3;i++)
+	{
+		int user_pass;
+		printf(" Enter Password: ");
+		scanf("%d",&user_pass);
+		if(user_pass==admin_password)
+		{
+			check=1;
+			printf("\t\t ~~~ Welcome to admin mode ~~~ \n");
+			return 1;
+		}
+		if(check==0)
+		{
+			printf("\n  Wrong Password\n");
+		}
+	}
+	return 0;
+}
+int check_user()
+{
+	int check=0,i;
+	printf("\n\t\t  ~~~ To Log In ~~~\n");
+	for( i=0;i<3;i++)
+	{
+		int entered_id;
+		printf(" Enter id : ");
+		scanf("%d",&entered_id);
+		char entered_pass[20];
+		printf(" Enter password : ");
+		scanf("%s",&entered_pass);
+		if(head)
+		{
+			 std* selected=head;
+			  while (selected){
+				if(strcmp(selected->password,entered_pass)==0 && selected->id==entered_id)
+				{
+					check=1;	
+               printf("\t\t ~~~ Welcome to user mode ~~~ \n");
+					USER_mode(selected);
+					return 1;
+				}
+				selected=selected->next;
+			  }
+		}
+		if(check==0)
+		{
+			printf("\n  Wrong id or Password \n");
+		}
+	}
+	return 0;
+}
+void check_mode()
+{
+	char choice=1;
+	while(choice)
+	{
+		printf("   \nChoose Your Mode:\n");
+		printf("   *To Admin Mode choose..1\n");
+		printf("   *To User Mode choose..2\n");
+		printf("   *To Logout choose..3\n");
+		printf(" your choice: ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				if(check_admin())
+				{Admin_mode();}
+				else{printf("\tReturn to main page\n");}
+				break;
+			case 2:
+               if(!check_user()){printf("\tReturn to main page\n");}
+				break;
+			case 3 :
+				choice=0;
+				break;
+			default:
+				printf(" Wrong Choice\n");
+				break;
+		}
+	}
+}
+

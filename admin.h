@@ -1,8 +1,6 @@
- #include "admin.c"
  
  #ifndef ADMIN_H
  #define ADMIN_H
-
 
  int clear_input_buffer(void);
  void Add_student();
@@ -14,5 +12,8 @@
  void Admin_services();
  void Admin_mode();
  
+ int check_admin();
+ int check_user();
+ void check_mode();
  
  #endif
