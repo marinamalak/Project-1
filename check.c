@@ -16,7 +16,6 @@ int check_admin()
 		{
 			check=1;
 			printf("\t\tWelcome \n");
-			 Admin_mode();
 			return 1;
 		}
 		if(check==0)
@@ -45,7 +44,6 @@ int check_user()
 				if(strcmp(selected->password,entered_pass)==0 && selected->id==entered_id)
 				{
 					check=1;
-					current_user=selected;
 					printf("  Welcome \n");
 					return 1;
 				}
@@ -61,31 +59,33 @@ int check_user()
 }
 void check_mode()
 {
-	printf("   Choose Your Mode:\n");
-	printf("   *To Admin Mode choose..1\n");
-	printf("   *To User Mode choose..2\n");
-    printf("   *To Logout choose..3\n");
-
 	char choice=1;
-	 while(choice){
-	printf(" your choice: ");
-	scanf("%d",choice);
-	switch(choice)
+	while(choice)
 	{
-		case 1:
-			check_admin();
-			break;
-		case 2:
-			check_user();
-			break;
-        case 3 :
-		    choice=0;
-		    break;
-		default:
-			printf("Wrong Choice\n");
-			break;
-	   }
-	 }
+		printf("   \nChoose Your Mode:\n");
+		printf("   *To Admin Mode choose..1\n");
+		printf("   *To User Mode choose..2\n");
+		printf("   *To Logout choose..3\n");
+		printf(" your choice: ");
+		scanf("%d",&choice);
+		switch(choice)
+		{
+			case 1:
+				if(check_admin())
+				{Admin_mode();}
+				else{printf("\tReturn to main page\n");}
+				break;
+			case 2:
+				check_user();
+				break;
+			case 3 :
+				choice=0;
+				break;
+			default:
+				printf("Wrong Choice\n");
+				break;
+		}
+	}
 }
 
 #endif

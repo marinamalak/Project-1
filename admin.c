@@ -71,7 +71,7 @@ if(head){
   }
   
  void Remove_student(){
-	    int ID;
+	    int ID,found_id=0;
 	printf("Enter student id : ");
 	scanf("%d",&ID);
 		if(head){
@@ -79,6 +79,7 @@ if(head){
     	std* previous=NULL;
 	while(current2){
 		if(ID == current2->id){
+			found_id=1;
 		 if(previous)
         previous->next=current2->next;
           else{
@@ -89,17 +90,19 @@ if(head){
 		}
 		previous=current2;
 		current2=current2->next;
-	}			
+	}
   }
+  if(!found_id){printf("this id is not exist\n");}
  } 
  void View_student(){
-	 int ID;
+	 int ID,found_id=0;
 	printf("Enter student id : ");
 	scanf("%d",&ID);
 	  if(head){
 	 std* current=head;
 	  while(current){
 		if(ID == current->id){
+		found_id=1;
 		printf("\n  Name: %s  \n",current->name );
 		printf("  Password: %s  \n",current->password );
 		printf("  Gender : %s  \n",current->gender );
@@ -110,6 +113,7 @@ if(head){
 	  current=current->next;
 	  }
 	}
+	if(!found_id){printf("this id is not exist\n");}
  }
  
  void View_all_student(){
@@ -135,13 +139,14 @@ void Edit_admin_pass(){
 }
 void Edit_std_grade(){
 	char right=1;
-	 int ID,Total_grade;
+	 int ID,Total_grade,found_id=0;
 	printf("Enter student id : ");
 	scanf("%d",&ID);
 	  if(head){
 	 std* current=head;
 	  while(current){
 		if(ID == current->id){
+			found_id=1;
 	printf("Enter new total grades : ");
 	scanf("%d",&Total_grade);
 	 while(right){
@@ -161,11 +166,12 @@ void Edit_std_grade(){
 	    current=current->next;
 	 }
    }
+   if(!found_id){printf("this id is not exist\n");}
 }
  void Admin_services(){
 	char choice=1;
 	   while(choice){
-	printf(" your choice: ");
+	printf("\n your choice: ");
 	scanf("%d",&choice); 
 	switch(choice){
 		  case 1:
@@ -198,13 +204,13 @@ void Edit_std_grade(){
   }
    
  void Admin_mode(){
-   printf("  *To Add Student Record choose..1\n");
-   printf("  *To Remove Student Record choose..2\n");
-   printf("  *To View Student Record choose..3\n");
-   printf("  *To View ALL Records choose..4\n");
-   printf("  *To Edit Admin Password choose..5\n");
-   printf("  *To Edit Student Grade choose..6\n");
-   printf("  *To Logout choose..7\n");
+   printf("\t\t*To Add Student Record choose..1\n");
+   printf("\t\t*To Remove Student Record choose..2\n");
+   printf("\t\t*To View Student Record choose..3\n");
+   printf("\t\t*To View ALL Records choose..4\n");
+   printf("\t\t*To Edit Admin Password choose..5\n");
+   printf("\t\t*To Edit Student Grade choose..6\n");
+   printf("\t\t*To Logout choose..7\n");
    Admin_services();
    }
    
