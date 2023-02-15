@@ -2,88 +2,63 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include"struct.h"
-///////////////////////
-#define head NULL
-///////////////////
+#include "user.h"
+
 void Student_detailes(std *state){
- /*   int id;
-    printf("Enter the ID :");
-    scanf("%i",&id);
-    std*state=head;
-    if(head){
-        while(state){
-            if(id==state->id){*/
-                printf("Name     : %s",state->name);
-                printf("Id       : %i",state->id);
-                printf("Gender   : %s",state->gender);
-                printf("Age      : &c",state->age);
-                printf("Grade    : &i",state->total_grade);
-                printf("Password : &s",state->password);
+                printf(" Name : %s\n",state->name);
+			    printf(" Gender : %s\n",state->gender);
+                printf(" Id : %d\n",state->id);
+                printf(" Password : %s\n",state->password);
+                printf(" Age : %d\n",state->age);
+                printf(" Grade : %d\n",state->total_grade);          
                 state=state->next;
-          
-            /*
         }
-    }
-}*/
+   
 void Change_Name(std *state) {
-   /* int id;
-    printf("Enter the ID :");
-    scanf("%i", &id);
-    std *state = head;
-    if (head) {
-        while (state) {
-            if (id == state->id) {*/
-                printf("Enter the new name :");
+                printf("Enter the new name : ");
                 scanf("%c", (char *) stdin);
                 gets(state->name);
-                printf("Name added successfully \n");
-                state = state->next;
-
-           
-/*
-        }
-    }
-}*/
+                printf("  Name edited successfully \n");
+                state = state->next;        
+}
 void Change_Password(std *state) {
-  /*  int id;
-    printf("Enter the ID :");
-    scanf("%i", &id);
-    char pass[20];
-    printf("Enter the password :");
-    scanf("%c", (char *) stdin);
-    gets(pass);
-    std *state = head;
-    if (head) {
-        while (state) {
-            if (id == state->id && !(strcmp(pass, state->password)))*/ 
-                printf("Enter the new password :");
+
+                printf("Enter the new password : ");
                 scanf("%c", (char *) stdin);
                 gets(state->password);
-                printf("password added successfully \n");
+                printf("  password edited successfully \n");
                 state = state->next;
           
 }
-/*
-        }
-    }
-}*/
-void check_order_user(std *state){
-    int choice=0;
-    printf("Hello Student !\n"
-           "please choice [1] to show Your information\n"
-           "       \t      [2] to change Your name \n"
-           "       \t      [3] to change password \n");
+void USER_services(std *state){
+	char choice=1;
+	   while(choice){
+	printf("\n your choice: ");
+	scanf("%d",&choice); 
+	switch(choice){
+		  case 1:
+            Student_detailes(state);
+        break;
+          case 2:
+           Change_Name(state);
+        break;
+          case 3:
+           Change_Password(state);
+		break;
+          case 4:
+		  choice=0;
+		  break;
+		  default:
+			printf(" Wrong Choice\n");
+			break;
+		}		  
+    }	
+  }
 
-    scanf("%i",&choice);
-    switch(choice){
-        case 1 :
-            Student_detailes(&status);
-            break;
-        case 2 :
-            Change_Name(&status);
-            break;
-        case 3 :
-            Change_Password(&status);
-            break;
-    }
+void check_order_user(std *state){
+	   printf("\t\t*To View Your Record choose..1\n");
+       printf("\t\t*To Edit Your Name choose..2\n");	   
+       printf("\t\t*To Edit Your Password choose..3\n");
+       printf("\t\t*To Logout choose..4\n");
+       USER_services(state);
 }

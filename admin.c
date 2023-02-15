@@ -263,7 +263,7 @@ int check_user()
 				{
 					check=1;	
                printf("\t\t ~~~ Welcome to user mode ~~~ \n");
-					USER_mode(selected);
+					check_order_user(selected);
 					return 1;
 				}
 				selected=selected->next;
